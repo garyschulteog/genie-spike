@@ -1,0 +1,12 @@
+version: "2"
+services:
+  genie:
+    build: 
+      context: .
+      args:
+        - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+        - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+    ports:
+      - "8080:8080"
+    tty: true
+    container_name: genie_gary_app_3.0.11

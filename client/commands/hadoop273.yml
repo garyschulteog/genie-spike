@@ -1,0 +1,13 @@
+id: hadoop273
+name: hadoop
+user: cloudbreak
+description: Hadoop FS Command
+status: ACTIVE
+setupFile:
+configs: []
+executable: ${HADOOP_HOME}/bin/hadoop
+version: 2.7.3
+tags:
+  - type:hadoop
+  - ver:2.7.3
+checkDelay: 5000

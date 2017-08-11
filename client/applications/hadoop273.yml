@@ -1,0 +1,15 @@
+id: hadoop273
+name: hadoop
+user: cloudbreak
+status: ACTIVE
+description: Hadoop Application
+setupFile: s3://ogsandbox-genie-test/applications/hadoop273/setup.sh
+configs: []
+version: 2.7.3
+type: hadoop
+tags:
+  - type:hadoop
+  - ver:2.7.3
+  - env:demo
+dependencies:
+  - s3://ogsandbox-genie-test/applications/hadoop273/hadoop-2.7.3.tar.gz

@@ -1,0 +1,15 @@
+version: "2"
+services:
+  genie:
+    image: netflixoss/genie-app:3.0.11
+    ports:
+      - "8080:8080"
+    tty: true
+    container_name: genie_gary_app_3.0.11
+    entrypoint: 
+      - java 
+      - -Djava.security.egd=file:/dev/./urandom
+      - -jar
+      - /usr/local/bin/genie.jar
+      - --genie.aws.credentials.file=/tmp/creds.props 
+      - --spring.profiles.active=dev,s3
