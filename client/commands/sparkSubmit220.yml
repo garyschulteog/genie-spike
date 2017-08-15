@@ -1,0 +1,11 @@
+id: sparksubmit220
+name: Spark Submit
+user: cloudbreak
+description: Spark Submit Command
+status: ACTIVE
+setupFile: s3://ogsandbox-genie-test/commands/spark-2.2/setupSubmit.sh
+configs: []
+executable: ${SPARK_HOME}/bin/spark-submit --master yarn --deploy-mode client
+version: 2.0.1
+tags: ['type:spark-submit', 'ver:2.2.0']
+checkDelay: 5000
