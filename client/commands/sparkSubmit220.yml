@@ -5,7 +5,7 @@ description: Spark Submit Command
 status: ACTIVE
 setupFile: s3://ogsandbox-genie-test/commands/spark-2.2/setupSubmit.sh
 configs: []
-executable: ${SPARK_HOME}/bin/spark-submit --master yarn --deploy-mode client --jar ${GENIE_APPLICATION_DIR}/${APP_ID}/dependencies/jersey-client-1.19.1.jar
+executable: ${SPARK_HOME}/bin/spark-submit --master yarn --deploy-mode client
 version: 2.0.1
 tags: ['type:spark-submit', 'ver:2.2.0']
 checkDelay: 5000
