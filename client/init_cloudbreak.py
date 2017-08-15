@@ -1,4 +1,4 @@
-#!/usr/bin/python2.7
+/usr/bin/python2.7
 
 # modeled from client example init
 
@@ -50,7 +50,7 @@ test_cluster_id = genie.create_cluster(test_cluster)
 LOGGER.warn("Created test cluster with id = [%s]" % test_cluster_id)
 
 test2_cluster = load_yaml("clusters/ariatest-sandbox.yml")
-test2_cluster_id = genie.create_cluster(test_cluster)
+test2_cluster_id = genie.create_cluster(test2_cluster)
 LOGGER.warn("Created test2 cluster with id = [%s]" % test_cluster_id)
 
 genie.set_commands_for_cluster(
