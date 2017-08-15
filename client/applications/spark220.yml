@@ -10,3 +10,4 @@ tags: ['type:spark', 'ver:2.2.0', 'ver:2.2']
 dependencies:
   - s3://ogsandbox-genie-test/applications/spark-2.2/spark-2.2.0-bin-hadoop2.7.tgz
   - s3://ogsandbox-genie-test/applications/spark-2.2/jersey-client-1.19.1.jar
+  - s3://ogsandbox-genie-test/applications/spark-2.2/jersey-core-1.19.1.jar
