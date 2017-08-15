@@ -34,12 +34,21 @@ LOGGER.warn("Created Hadoop command with id = [%s]" % hadoop_command_id)
 genie.set_application_for_command(hadoop_command_id, [hadoop_application_id])
 LOGGER.warn("Set applications for Hadoop command to = [%s]" % hadoop_application_id)
 
-test_cluster = load_yaml("clusters/cloudbreak-sandbox.yml")
+test_cluster = load_yaml("clusters/geniedemo-sandbox.yml")
 test_cluster_id = genie.create_cluster(test_cluster)
 LOGGER.warn("Created test cluster with id = [%s]" % test_cluster_id)
 
+test2_cluster = load_yaml("clusters/ariatest-sandbox.yml")
+test2_cluster_id = genie.create_cluster(test_cluster)
+LOGGER.warn("Created test2 cluster with id = [%s]" % test_cluster_id)
+
 genie.set_commands_for_cluster(
     test_cluster_id,
+    [hadoop_command_id]
+)
+
+genie.set_commands_for_cluster(
+    test2_cluster_id,
     [hadoop_command_id]
 )
 LOGGER.warn("Added all commands to the test cluster with id = [%s]" % test_cluster_id)

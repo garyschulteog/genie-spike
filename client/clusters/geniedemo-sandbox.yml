@@ -1,0 +1,12 @@
+name: geniedemo
+user: cloudbreak
+version: 2.7.3
+status: UP
+tags:
+  - sched:demo
+  - type:yarn
+  - ver:2.7.3
+configs:
+  - s3://ogsandbox-genie-test/clusters/geniedemo/conf/core-site.xml
+  - s3://ogsandbox-genie-test/clusters/geniedemo/conf/mapred-site.xml
+  - s3://ogsandbox-genie-test/clusters/geniedemo/conf/yarn-site.xml
