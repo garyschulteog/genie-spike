@@ -10,3 +10,4 @@ services:
       - "8080:8080"
     tty: true
     container_name: genie_gary_app_3.0.11
+    image: garyschulteog/genie-og

@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: genie-deployment-v0
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: genie-og
+  template:
+    metadata:
+      labels:
+        name: genie-og
+    spec:
+      containers:
+        - name: genie
+          image: garyschulteog/genie-og
+          imagePullPolicy: Always
+          ports:
+           - containerPort: 8080
+          livenessProbe:
+              httpGet:
+                path: /jobs
+                port: 8080
+              initialDelaySeconds: 120
+              timeoutSeconds: 5
+      imagePullSecrets:
+        - name: garyschulteog-docker-reg-key
