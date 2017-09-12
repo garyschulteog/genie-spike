@@ -14,10 +14,22 @@ spec:
     spec:
       containers:
         - name: genie
-          image: garyschulteog/genie-og
+          image: netflixoss/genie-app:3.0.11
           imagePullPolicy: Always
           ports:
            - containerPort: 8080
+          env:
+          - name: AWS_ACCESS_KEY_ID
+            valueFrom:
+              secretKeyRef:
+                name: genie-secret
+                key: accessKey
+          - name: AWS_SECRET_ACCESS_KEY
+            valueFrom:
+              secretKeyRef:
+                name: genie-secret
+                key: secretKey
+          command: [ "/bin/sh", "-c", "mkdir /etc/genie && env|grep AWS > /etc/genie/creds.props && java -Djava.security.egd=file:/dev/./urandom -cp /usr/local/bin/genie.jar:/etc/genie/ org.springframework.boot.loader.PropertiesLauncher --genie.aws.credentials.file=/creds.props --spring.profiles.active=dev,s3" ]
           livenessProbe:
               httpGet:
                 path: /jobs
