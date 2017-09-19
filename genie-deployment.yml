@@ -1,0 +1,53 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: genie-deployment-v0
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: genie
+  template:
+    metadata:
+      labels:
+        name: genie
+    spec:
+      containers:
+        - name: genie
+          image: netflixoss/genie-app:3.0.11
+          imagePullPolicy: Always
+          ports:
+           - containerPort: 8080
+          env:
+          - name: AWS_ACCESS_KEY_ID
+            valueFrom:
+              secretKeyRef:
+                name: genie-aws-creds
+                key: access-key
+          - name: AWS_SECRET_ACCESS_KEY
+            valueFrom:
+              secretKeyRef:
+                name: genie-aws-creds
+                key: secret-key
+          - name: GENIE_DB_JDBC_URL
+            valueFrom:
+              secretKeyRef:
+                name: genie-db
+                key: jdbc
+          - name: GENIE_DB_USER
+            valueFrom:
+              secretKeyRef:
+                name: genie-db
+                key: user
+          - name: GENIE_DB_PWD
+            valueFrom:
+              secretKeyRef:
+                name: genie-db
+                key: password
+          command: [ "/bin/sh", "-c", "mkdir /etc/genie && env|grep AWS > /etc/genie/creds.props && java -Djava.security.egd=file:/dev/./urandom -cp /usr/local/bin/genie.jar:/etc/genie/ org.springframework.boot.loader.PropertiesLauncher --genie.aws.credentials.file=/creds.props --spring.profiles.active=dev,s3 --spring.datasource.url=${GENIE_DB_JDBC_URL} --spring.datasource.username=${GENIE_DB_USER} --spring.datasource.password=${GENIE_DB_PWD}"]
+          livenessProbe:
+              httpGet:
+                path: /jobs
+                port: 8080
+              initialDelaySeconds: 120
+              timeoutSeconds: 5

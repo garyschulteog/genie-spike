@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: voltron-spark-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: voltron-spark-service
+  template:
+    metadata:
+      labels:
+        name: voltron-spark-service
+    spec:
+      containers:
+        - name: spark-service
+          image: opengovorg/spark-service:dev
+          imagePullPolicy: Always
+          ports:
+           - containerPort: 8200
+          livenessProbe:
+              httpGet:
+                path: /api/spark-service/v0/applications/1337
+                port: 8200
+              initialDelaySeconds: 120
+              timeoutSeconds: 5
+      imagePullSecrets:
+        - name: garyschulteog-docker-reg-key

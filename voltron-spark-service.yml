@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: voltron-spark-service
+spec:
+  ports:
+    - port: 80
+      targetPort: 8200
+  selector:
+    name: voltron-spark-service
+  type: LoadBalancer
