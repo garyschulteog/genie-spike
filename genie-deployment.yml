@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: genie
-          image: netflixoss/genie-app:3.0.11
+          image: netflixoss/genie-app:3.1.2
           imagePullPolicy: Always
           ports:
            - containerPort: 8080
@@ -47,7 +47,7 @@ spec:
           command: [ "/bin/sh", "-c", "mkdir /etc/genie && env|grep AWS > /etc/genie/creds.props && java -Djava.security.egd=file:/dev/./urandom -cp /usr/local/bin/genie.jar:/etc/genie/ org.springframework.boot.loader.PropertiesLauncher --genie.aws.credentials.file=/creds.props --spring.profiles.active=dev,s3 --spring.datasource.url=${GENIE_DB_JDBC_URL} --spring.datasource.username=${GENIE_DB_USER} --spring.datasource.password=${GENIE_DB_PWD}"]
           livenessProbe:
               httpGet:
-                path: /jobs
+                path: /api/v3
                 port: 8080
               initialDelaySeconds: 120
               timeoutSeconds: 5
